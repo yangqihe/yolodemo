@@ -5,7 +5,7 @@ import cv2
 model = YOLO('model/best_250s.pt')  # 替换为你的模型路径
 
 # 读取图像
-image_path = 'test/test_small2.jpg'
+image_path = 'test/test1.jpg'
 image = cv2.imread(image_path)
 
 # 推理
