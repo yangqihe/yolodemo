@@ -1,0 +1,5 @@
+path: ../fish/data/dataset #YOLO 默认以 datasets 目录 为基准解析相对路径（而非你的项目根目录）
+train: ./images/train
+val: ./images/val
+nc: 1
+names: ['fry']
