@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01d766a2-fd72-4626-9954-6cdfa14086d9" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/test/word_stack_bar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fish/yolo_fish_image_detect_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/fish/yolo_fish_image_detect_demo.py" afterDir="false" />
-    </list>
+    <list default="true" id="01d766a2-fd72-4626-9954-6cdfa14086d9" name="更改" comment=".." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,26 +20,72 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "yangqihe"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/yangqihe/yolodemo.git",
+    "accountId": "ad03ed6f-5fa9-416e-9fa9-91c288d9531f"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2xAHmjucAsZoZYHOsAnuULYgMEf" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.build_sbert_index.executor": "Run",
+    "Python.debug_page_fixed_final.executor": "Run",
+    "Python.debug_page_full.executor": "Run",
+    "Python.debug_page_full_final.executor": "Run",
+    "Python.debug_page_incremental_patch.executor": "Run",
     "Python.face_recognition_demo.executor": "Run",
+    "Python.main_window.executor": "Run",
+    "Python.sbert_inference.executor": "Run",
+    "Python.serial_monitor.executor": "Run",
+    "Python.setting_control_page_pyqt.executor": "Run",
+    "Python.setting_demo (1).executor": "Run",
+    "Python.setting_demo.executor": "Run",
+    "Python.setting_page.executor": "Run",
+    "Python.setting_page_with_sensors.executor": "Run",
+    "Python.socket_server.executor": "Run",
     "Python.stack_bar.executor": "Run",
     "Python.stack_bar2.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test11.executor": "Run",
+    "Python.test2.executor": "Run",
+    "Python.test3.executor": "Run",
+    "Python.test4.executor": "Run",
+    "Python.test_water.executor": "Run",
+    "Python.train_intent_classifier.executor": "Run",
+    "Python.voice_app.executor": "Run",
+    "Python.voice_app2.executor": "Run",
+    "Python.vosk_control_tts.executor": "Run",
+    "Python.vosk_control_tts_v2.executor": "Run",
+    "Python.vosk_demo.executor": "Run",
+    "Python.vosk_demo_v2.executor": "Run",
+    "Python.vosk_with_intent.executor": "Run",
+    "Python.vosk_with_intent_debug.executor": "Run",
+    "Python.vosk_with_sbert.executor": "Run",
     "Python.word_stack_bar.executor": "Run",
     "Python.yolo_fish_camera_detect_demo.executor": "Run",
     "Python.yolo_fish_image_detect_demo.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Github/yolodemo/yolodemo/test",
+    "last_opened_file_path": "D:/Github/yolodemo/yolodemo/ros",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -54,11 +96,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Github\yolodemo\yolodemo\ros" />
+      <recent name="D:\Github\yolodemo\yolodemo\sbert" />
+      <recent name="D:\Github\yolodemo\yolodemo\test\intent_model" />
       <recent name="D:\Github\yolodemo\yolodemo\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.word_stack_bar">
-    <configuration name="face_recognition_demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.test_water">
+    <configuration name="socket_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="yolodemo" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -67,12 +112,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/face" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ros" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/face/face_recognition_demo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ros/socket_server.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -81,7 +126,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="stack_bar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test_water" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="yolodemo" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -90,12 +135,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ros" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/stack_bar.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ros/test_water.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -104,7 +149,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="word_stack_bar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="voice_app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="yolodemo" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,12 +158,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sbert" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Github\yolodemo\yolodemo\test\word_stack_bar.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sbert/voice_app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -127,7 +172,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="yolo_fish_camera_detect_demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="voice_app2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="yolodemo" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -136,12 +181,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fish" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sbert" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fish/yolo_fish_camera_detect_demo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sbert/voice_app2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,7 +195,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="yolo_fish_image_detect_demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="vosk_with_sbert" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="yolodemo" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,12 +204,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fish" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sbert" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fish/yolo_fish_image_detect_demo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sbert/vosk_with_sbert.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -175,11 +220,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.word_stack_bar" />
-        <item itemvalue="Python.stack_bar" />
-        <item itemvalue="Python.yolo_fish_camera_detect_demo" />
-        <item itemvalue="Python.face_recognition_demo" />
-        <item itemvalue="Python.yolo_fish_image_detect_demo" />
+        <item itemvalue="Python.test_water" />
+        <item itemvalue="Python.socket_server" />
+        <item itemvalue="Python.vosk_with_sbert" />
+        <item itemvalue="Python.voice_app" />
+        <item itemvalue="Python.voice_app2" />
       </list>
     </recent_temporary>
   </component>
@@ -203,17 +248,73 @@
       <workItem from="1747375431501" duration="8000" />
       <workItem from="1747375462521" duration="670000" />
       <workItem from="1747376148775" duration="4174000" />
+      <workItem from="1748085209072" duration="4250000" />
+      <workItem from="1748096547899" duration="1068000" />
+      <workItem from="1748131538850" duration="11175000" />
+      <workItem from="1748233370566" duration="7349000" />
+      <workItem from="1748253397598" duration="9235000" />
+      <workItem from="1748316714765" duration="5640000" />
+      <workItem from="1748401008310" duration="13028000" />
+      <workItem from="1748481912815" duration="3781000" />
+      <workItem from="1748501233748" duration="6381000" />
+      <workItem from="1748613601534" duration="2857000" />
+      <workItem from="1749111260116" duration="2488000" />
+      <workItem from="1749199098876" duration="4467000" />
+      <workItem from="1749257010651" duration="7429000" />
     </task>
+    <task id="LOCAL-00001" summary="..">
+      <option name="closed" value="true" />
+      <created>1749267958929</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749267958929</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=".." />
+    <option name="LAST_COMMIT_MESSAGE" value=".." />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/yolodemo$setting_demo__1_.coverage" NAME="setting_demo (1) 覆盖结果" MODIFIED="1748253036523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$yolo_fish_image_detect_demo.coverage" NAME="yolo_fish_image_detect_demo 覆盖结果" MODIFIED="1747375510679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fish" />
+    <SUITE FILE_PATH="coverage/yolodemo$vosk_with_intent_debug.coverage" NAME="vosk_with_intent_debug 覆盖结果" MODIFIED="1748139737564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$setting_page_with_sensors.coverage" NAME="setting_page_with_sensors 覆盖结果" MODIFIED="1748431537575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$yolo_fish_camera_detect_demo.coverage" NAME="yolo_fish_camera_detect_demo 覆盖结果" MODIFIED="1747375818449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fish" />
+    <SUITE FILE_PATH="coverage/yolodemo$setting_page.coverage" NAME="setting_page 覆盖结果" MODIFIED="1749111564309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$stack_bar.coverage" NAME="stack_bar 覆盖结果" MODIFIED="1747377623689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/yolodemo$stack_bar2.coverage" NAME="word_stack_bar 覆盖结果" MODIFIED="1747378400562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$test_water.coverage" NAME="test_water 覆盖结果" MODIFIED="1749263237311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$vosk_control_tts_v2.coverage" NAME="vosk_control_tts_v2 覆盖结果" MODIFIED="1748136086052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$main_window.coverage" NAME="main_window 覆盖结果" MODIFIED="1749111571150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$vosk_with_sbert.coverage" NAME="vosk_with_sbert 覆盖结果" MODIFIED="1749112651438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
+    <SUITE FILE_PATH="coverage/yolodemo$debug_page_fixed_final.coverage" NAME="debug_page_fixed_final 覆盖结果" MODIFIED="1748431105147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$vosk_demo.coverage" NAME="vosk_demo 覆盖结果" MODIFIED="1748133630561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$test3.coverage" NAME="test3 覆盖结果" MODIFIED="1748097600584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$vosk_with_intent.coverage" NAME="vosk_with_intent 覆盖结果" MODIFIED="1748135946401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$test11.coverage" NAME="test11 覆盖结果" MODIFIED="1748508112355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$vosk_control_tts.coverage" NAME="vosk_control_tts 覆盖结果" MODIFIED="1748134392708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$test2.coverage" NAME="test2 覆盖结果" MODIFIED="1748507603609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/yolodemo$face_recognition_demo.coverage" NAME="face_recognition_demo 覆盖结果" MODIFIED="1747375604070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face" />
+    <SUITE FILE_PATH="coverage/yolodemo$debug_page_incremental_patch.coverage" NAME="debug_page_incremental_patch 覆盖结果" MODIFIED="1748430590849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$debug_page_full_final.coverage" NAME="debug_page_full_final 覆盖结果" MODIFIED="1748430647752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$setting_demo.coverage" NAME="setting_demo 覆盖结果" MODIFIED="1748254778217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
+    <SUITE FILE_PATH="coverage/yolodemo$sbert_inference.coverage" NAME="sbert_inference 覆盖结果" MODIFIED="1748233562092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
+    <SUITE FILE_PATH="coverage/yolodemo$build_sbert_index.coverage" NAME="build_sbert_index 覆盖结果" MODIFIED="1748442535384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
+    <SUITE FILE_PATH="coverage/yolodemo$test4.coverage" NAME="test4 覆盖结果" MODIFIED="1748135832367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$voice_app2.coverage" NAME="voice_app2 覆盖结果" MODIFIED="1749112032477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
+    <SUITE FILE_PATH="coverage/yolodemo$socket_server.coverage" NAME="socket_server 覆盖结果" MODIFIED="1749261369000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$serial_monitor.coverage" NAME="serial_monitor 覆盖结果" MODIFIED="1748501717156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$debug_page_full.coverage" NAME="debug_page_full 覆盖结果" MODIFIED="1748430391980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$voice_app.coverage" NAME="voice_app 覆盖结果" MODIFIED="1749112089909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
+    <SUITE FILE_PATH="coverage/yolodemo$setting_control_page_pyqt.coverage" NAME="setting_control_page_pyqt 覆盖结果" MODIFIED="1748430222791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$test.coverage" NAME="test 覆盖结果" MODIFIED="1748089114088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$vosk_demo_v2.coverage" NAME="vosk_demo_v2 覆盖结果" MODIFIED="1748134203731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/yolodemo$train_intent_classifier.coverage" NAME="train_intent_classifier 覆盖结果" MODIFIED="1748138801604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
 </project>
