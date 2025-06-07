@@ -4,14 +4,16 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from sbert.sbert_const import local_model_path, predict_threshold
+
 # 加载向量索引
 data = joblib.load("sbert_intent/intent_sbert_index.pkl")
-model = SentenceTransformer(data["model_name"])
+model = SentenceTransformer(local_model_path)
 index_embeddings = data["embeddings"]
 index_labels = data["labels"]
 index_texts = data["texts"]
 
-def predict_intent(text, threshold=0.6):
+def predict_intent(text, threshold = predict_threshold):
     vec = model.encode([text])
     sims = cosine_similarity(vec, index_embeddings)[0]
     best_idx = np.argmax(sims)

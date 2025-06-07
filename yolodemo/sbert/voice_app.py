@@ -14,24 +14,12 @@ from sentence_transformers import SentenceTransformer
 from vosk import Model, KaldiRecognizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from sbert.sbert_const import intent_to_natural_reply
+
 q = queue.Queue()
 is_listening = False
 rec = None
 
-# ✅ 意图自然语言映射表
-intent_to_natural_reply = {
-    "extend_arm": "转动机械臂",
-    "retract_arm": "收回机械臂",
-    "extend_sensor": "伸出传感器",
-    "retract_sensor": "收回传感器",
-    "start_oxygen": "开始测量溶氧",
-    "stop_oxygen": "停止测量溶氧",
-    "start_ph": "开始测量PH值",
-    "stop_ph": "停止PH检测",
-    "open_camera": "打开相机",
-    "take_photo": "拍照",
-    "close_camera": "关闭相机",
-}
 
 # ✅ 加载模型
 vosk_model_path = "../../model/vosk/vosk-model-cn-0.22"

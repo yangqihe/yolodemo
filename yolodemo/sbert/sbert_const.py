@@ -1,29 +1,26 @@
-import os
-import joblib
-import numpy as np
-from sentence_transformers import SentenceTransformer
-
-# 加载模型
-model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
-
-# 控制意图模板
-# control_templates = {
-#     "extend_arm": ["伸出机械臂", "把机械臂伸出来", "请伸出机械臂"],
-#     "retract_arm": ["收回机械臂", "让机械臂退回来", "关闭机械臂"],
-#     "extend_sensor": ["伸出传感器", "把传感器推出去", "请伸出传感器"],
-#     "retract_sensor": ["收回传感器", "关闭传感器", "让传感器回来"],
-#     "start_oxygen": ["开始测量溶氧", "启动溶氧检测", "检测氧含量"],
-#     "stop_oxygen": ["停止测量溶氧", "关闭溶氧检测", "结束氧气检测"],
-#     "start_ph": ["开始测量PH值", "启动PH检测", "检测PH"],
-#     "stop_ph": ["停止PH检测", "关闭PH传感器", "取消PH测量"],
-#     "open_camera": ["打开相机", "启动摄像头", "开启相机"],
-#     "take_photo": ["开始拍照", "拍照", "拍一张照片"],
-#     "close_camera": ["关闭相机", "停止摄像", "关掉相机"]
-# }
+local_model_path = "D:/Github/yolodemo/model/huggingface/paraphrase-multilingual-MiniLM-L12-v2"
+predict_threshold = 0.75
+# ✅ 意图自然语言映射表
+intent_to_natural_reply = {
+    "extend_arm": "打开机械臂",
+    "retract_arm": "收回机械臂",
+    "extend_sensor": "伸出传感器",
+    "retract_sensor": "收回传感器",
+    "start_oxygen": "开始测量溶氧",
+    "stop_oxygen": "停止测量溶氧",
+    "start_ph": "开始测量PH值",
+    "stop_ph": "停止PH检测",
+    "open_camera": "打开相机",
+    "take_photo": "拍照",
+    "close_camera": "关闭相机",
+    "detect_water_quality": "检测水质",
+    "save_data": "保存数据",
+}
 
 control_templates = {
     # 机械臂控制
     "extend_arm": [
+        "打开机械臂",
         "伸出机械臂", "把机械臂伸出来", "请伸出机械臂",
         "展开机械臂", "伸出机械手臂", "机械臂向前延伸",
         "启动机械臂伸出程序", "机械臂伸展到工作位置",
@@ -40,6 +37,7 @@ control_templates = {
 
     # 传感器控制
     "extend_sensor": [
+        "打开传感器",
         "伸出传感器", "把传感器推出去", "请伸出传感器",
         "推出传感器模块", "传感器伸展到检测位置",
         "部署传感器", "激活并伸出传感器",
@@ -106,69 +104,14 @@ control_templates = {
         "保存到数据库", "数据保存到文件",
         "保存实验数据", "存储测量结果",
         "请保存当前状态", "数据持久化"
+    ],
+    # 水质检测
+    "detect_water_quality": [
+        "开始检测水质", "检测水质", "请检测一下水质",
+        "执行水质分析", "启动水质检测", "水质检测开始",
+        "检测当前水质情况", "监测水体质量",
+        "进行水质分析", "水质分析一下",
+        "测一下水质", "检测一下水质参数",
+        "启动水质参数监测", "请开始水质监测"
     ]
 }
-
-# 聊天意图模板
-# chat_templates = [
-#     "你是谁", "你叫什么名字", "今天天气好吗", "我们聊聊天", "你好", "再见",
-#     "你真棒", "你会干什么", "你在干嘛", "你能不能说话"
-# ]
-chat_templates = [
-    # 基础问候
-    "你是谁", "你叫什么名字", "你好", "嗨", "早上好", "下午好", "晚上好",
-    "再见", "拜拜", "下次见", "很高兴认识你",
-
-    # 功能询问
-    "你会干什么", "你有什么功能", "你能帮我什么", "你有什么特长",
-    "你会聊天吗", "你能回答问题吗", "你懂多少东西",
-    "你是人工智能吗", "你是机器人还是真人",
-
-    # 状态/活动
-    "你在干嘛", "你忙吗", "你现在有空吗", "你在线吗",
-    "你睡了吗", "你需要休息吗", "你今天工作多久了",
-
-    # 情感/评价
-    "你真棒", "你真聪明", "你好可爱", "你太厉害了",
-    "我喜欢你", "你让我开心", "你生气了？", "你会难过吗",
-    "你有人类情感吗", "你会开玩笑吗",
-
-    # 天气/时间
-    "今天天气好吗", "明天会下雨吗", "现在几点了", "今天星期几",
-    "今天是几号", "现在是什么季节", "今年是什么年份",
-
-    # 闲聊/开放话题
-    "我们聊聊天", "讲个笑话吧", "说个故事听听", "唱首歌好吗",
-    "你有爱好吗", "你喜欢什么颜色", "你最爱吃什么",
-    "推荐一部电影", "最近有什么新闻", "人生有什么意义",
-
-    # 交互控制
-    "你能不能说话", "大声一点", "小声一点", "说慢一点",
-    "换个话题吧", "停止说话", "重复一遍", "我没听清",
-
-    # 哲学/技术
-    "人类会被AI取代吗", "你怎么看未来", "意识是什么",
-    "你怎么学习的", "你的工作原理是什么", "你有记忆吗"
-]
-
-# 合并所有模板
-texts, labels = [], []
-for label, phrases in control_templates.items():
-    texts.extend(phrases)
-    labels.extend([label] * len(phrases))
-texts.extend(chat_templates)
-labels.extend(["chat"] * len(chat_templates))
-
-# 编码为向量
-embeddings = model.encode(texts)
-
-# 保存索引
-os.makedirs("sbert_intent", exist_ok=True)
-joblib.dump({
-    "texts": texts,
-    "labels": labels,
-    "embeddings": embeddings,
-    "model_name": "paraphrase-multilingual-MiniLM-L12-v2"
-}, "sbert_intent/intent_sbert_index.pkl")
-
-print("✅ 已构建并保存 SBERT 意图向量索引")

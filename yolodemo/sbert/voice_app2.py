@@ -2,6 +2,8 @@ import os
 import queue
 import json
 import threading
+import time
+
 import numpy as np
 import sounddevice as sd
 import pyttsx3
@@ -35,6 +37,8 @@ intent_to_natural_reply = {
 }
 
 vosk_model_path = "../../model/vosk/vosk-model-cn-0.22"
+#vosk_model_path = "../../model/vosk/vosk-model-small-cn-0.22"
+
 if not os.path.exists(vosk_model_path):
     raise FileNotFoundError("❌ 缺少 Vosk 中文模型，请下载解压后放置在当前目录")
 rec = KaldiRecognizer(Model(vosk_model_path), 16000)
@@ -70,17 +74,9 @@ def predict_intent(text, threshold=0.6):
         return "chat", best_score, best_template
     return best_label, best_score, best_template
 
-def execute_action(label):
-    if label == "take_photo":
-        window.show_camera_preview()
-    elif label == "open_camera":
-        window.show_camera_preview()
-    elif label == "close_camera":
-        window.stop_camera_preview()
-    else:
-        print(f"🦾 执行动作：{label}")
-        engine.say(f"执行 {label}")
-        engine.runAndWait()
+def speak_async(text):
+    print(text)
+    # threading.Thread(target=lambda: engine.say(text) or engine.runAndWait(), daemon=True).start()
 
 def audio_callback(indata, frames, time, status):
     if is_listening:
@@ -89,6 +85,11 @@ def audio_callback(indata, frames, time, status):
 class VoiceApp(QWidget):
     def __init__(self):
         super().__init__()
+
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_camera_frame)
+        self.cap = None
+
         self.setWindowTitle("语音助手")
         self.resize(800, 600)
         self.center_window()
@@ -108,19 +109,41 @@ class VoiceApp(QWidget):
         self.button.setStyleSheet("font-size: 16px;")
         self.button.clicked.connect(self.toggle_recognition)
 
+        self.open_camera_button = QPushButton("📷 打开相机", self)
+        self.open_camera_button.setStyleSheet("font-size: 16px;")
+        self.open_camera_button.clicked.connect(self.show_camera_preview)
+
         layout = QVBoxLayout()
         layout.addWidget(self.partial_label)
         layout.addWidget(self.text_display)
         layout.addWidget(self.video_label)
         layout.addWidget(self.button)
+        layout.addWidget(self.open_camera_button)
         self.setLayout(layout)
 
-        self.stream = sd.RawInputStream(device=None, samplerate=16000, blocksize=8000,
-                                        dtype='int16', channels=1, callback=audio_callback)
+        self.stream = sd.RawInputStream(
+            samplerate=16000,
+            blocksize=4000,
+            dtype='int16',
+            channels=1,
+            callback=audio_callback,
+            latency='low'
+        )
 
-        self.cap = None
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.update_camera_frame)
+    def execute_action(self, label):
+        if label == "take_photo":
+            QTimer.singleShot(0, self.take_photo_with_camera_check)
+        elif label == "open_camera":
+            QTimer.singleShot(0, self.show_camera_preview)
+        elif label == "close_camera":
+            QTimer.singleShot(0, self.stop_camera_preview)
+        speak_async(f"执行 {label}")
+
+    def take_photo_with_camera_check(self):
+        if self.cap is None or not self.cap.isOpened():
+            self.show_camera_preview(then_capture=True)
+        else:
+            self.capture_photo()
 
     def center_window(self):
         screen = QDesktopWidget().screenGeometry()
@@ -156,6 +179,7 @@ class VoiceApp(QWidget):
 
     def recognition_loop(self):
         last_partial = ""
+        last_partial_time = time.time()
         while is_listening:
             try:
                 data = q.get(timeout=1)
@@ -170,55 +194,81 @@ class VoiceApp(QWidget):
             else:
                 partial = json.loads(rec.PartialResult())
                 ptext = partial.get("partial", "")
-                if ptext and ptext != last_partial:
+                now = time.time()
+                if ptext and ptext != last_partial and now - last_partial_time > 0.3:
                     self.partial_label.setText(f"🕓 当前识别：{ptext}")
                     last_partial = ptext
+                    last_partial_time = now
 
     def handle_text(self, text):
+        if len(text) < 2:
+            print(f"\n识别结果太短：{text}")
+            return
         self.text_display.append(f"\n✅ 最终识别结果：{text}")
         label, score, matched = predict_intent(text)
         self.text_display.append(f"🎯 意图：{label}（置信度：{score:.2f}）")
         if label == "chat":
             reply = short_reply(text)
             self.text_display.append(f"💬 回复：{reply}")
-            engine.say(reply)
-            engine.runAndWait()
+            speak_async(reply)
         else:
             reply_text = intent_to_natural_reply.get(label, matched)
             friendly_reply = f"好的，我马上{reply_text}"
             self.text_display.append(f"💬 回复：{friendly_reply}")
-            engine.say(friendly_reply)
-            engine.runAndWait()
-            execute_action(label)
-            if label == "take_photo":
-                QTimer.singleShot(1500, self.capture_photo)  # 拍照延时1.5秒
-
-    def show_camera_preview(self):
-        if self.cap is None:
-            self.cap = cv2.VideoCapture(0)
-            if not self.cap.isOpened():
-                self.text_display.append("❌ 相机打开失败")
-                return
-        self.timer.start(30)
+            speak_async(friendly_reply)
+            self.execute_action(label)
+        rec.Reset()
 
     def update_camera_frame(self):
-        if self.cap:
+        if self.cap and self.cap.isOpened():
             ret, frame = self.cap.read()
             if ret:
+                frame = cv2.resize(frame, (640, 480))
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 h, w, ch = frame.shape
-                qimg = QImage(frame.data, w, h, ch * w, QImage.Format_RGB888)
-                self.video_label.setPixmap(QPixmap.fromImage(qimg))
+                bytes_per_line = ch * w
+                qimg = QImage(frame.data, w, h, bytes_per_line, QImage.Format_RGB888)
+                pixmap = QPixmap.fromImage(qimg)
+                self.video_label.setPixmap(pixmap)
+            else:
+                print("⚠️ cap.read() 无法获取帧")
+        else:
+            print("⚠️ 相机未开启或读取失败")
+
+    def show_camera_preview(self, then_capture=False):
+        print("🎥 show_camera_preview 调用")
+        if self.cap is not None and self.cap.isOpened():
+            print("📸 相机已在运行中")
+            return
+
+        self.cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        if not self.cap.isOpened():
+            self.text_display.append("❌ 相机打开失败")
+            return
+
+        print("✅ 相机成功打开")
+        self.text_display.append("✅ 相机预览已启动")
+        self.timer.start(30)
+
+        if then_capture:
+            QTimer.singleShot(1500, self.capture_photo)
 
     def capture_photo(self):
-        if self.cap:
+        print('📸 capture_photo 调用')
+        if self.cap and self.cap.isOpened():
             ret, frame = self.cap.read()
             if ret:
-                filename = "captured_photo.jpg"
+                timestamp = time.strftime("%Y%m%d_%H%M%S")
+                filename = f"{timestamp}.jpg"
                 cv2.imwrite(filename, frame)
                 self.text_display.append(f"📸 已保存照片为：{filename}")
+            else:
+                print("⚠️ 拍照失败：无法读取帧")
+        else:
+            print("⚠️ 拍照失败：相机未打开")
 
     def stop_camera_preview(self):
+        print("📴 stop_camera_preview")
         if self.cap:
             self.timer.stop()
             self.cap.release()
