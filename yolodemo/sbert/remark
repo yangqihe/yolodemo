@@ -1,0 +1,4 @@
+#打包
+pyinstaller sbert/whisper_app.py --noconsole --icon=sbert/img/logo/logo.ico --add-data "sbert/sbert_intent;sbert/sbert_intent" --add-data "sbert/img;sbert/img" --add-data "model/whisper;model/whisper" --add-data "model/huggingface;model/huggingface" --hidden-import=transformers.models.deepseek_v3
+
+pyinstaller whisper_app_full.spec --noconfirm

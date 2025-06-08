@@ -1,69 +1,73 @@
 import sys
-import time
-import queue
 import threading
+import time
 import numpy as np
-import pycorrector
 import sounddevice as sd
 import soundfile as sf
 import pyttsx3
 import joblib
 import cv2
 import whisper
+
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QPushButton, QTextEdit, QVBoxLayout, QLabel, QDesktopWidget
 )
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtGui import QImage, QPixmap, QIcon
 from PyQt5.QtCore import Qt, QTimer
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-
-from sbert.sbert_const import local_model_path, predict_threshold, control_templates
-from sbert.voice_app import intent_to_natural_reply
 from opencc import OpenCC
-import torch
-import re
 import difflib
 from pypinyin import lazy_pinyin
 
-q = queue.Queue()
-is_listening = False
+from sbert.sbert_const import local_huggingface_path, predict_threshold, control_templates, \
+    local_whisper_path, resource_path, intent_to_natural_reply
 
-# intent_to_natural_reply = {
-#     "extend_arm": "转动机械臂",
-#     "retract_arm": "收回机械臂",
-#     "extend_sensor": "伸出传感器",
-#     "retract_sensor": "收回传感器",
-#     "start_oxygen": "开始测量溶氧",
-#     "stop_oxygen": "停止测量溶氧",
-#     "start_ph": "开始测量PH值",
-#     "stop_ph": "停止PH检测",
-#     "open_camera": "打开相机",
-#     "take_photo": "拍照",
-#     "close_camera": "关闭相机",
-# }
 
-# 展平模板句子
-all_templates = [phrase for phrases in control_templates.values() for phrase in phrases]
+# ===== 初始化模型变量 =====
+model = None
+model_loaded = False
+model_loading = False
+sbert_model = None
+sbert_index = None
+index_vecs = index_labels = index_texts = []
 
-sbert_index = joblib.load("sbert_intent/intent_sbert_index.pkl")
-# sbert_model = SentenceTransformer(sbert_index["model_name"])
-sbert_model = SentenceTransformer(local_model_path, local_files_only=True)
-index_vecs = sbert_index["embeddings"]
-index_labels = sbert_index["labels"]
-index_texts = sbert_index["texts"]
+whisper_model_path = resource_path(local_whisper_path)
 
-engine = pyttsx3.init()
-engine.setProperty("rate", 160)
-engine.setProperty("volume", 1.0)
 
-# model = whisper.load_model("medium")
-if torch.cuda.is_available():
-    model = whisper.load_model("medium").to("cuda")
-    print("✅ 使用 GPU 推理")
-else:
-    model = whisper.load_model("medium")
-    print("⚠️ 未检测到 GPU，使用 CPU 推理")
+def load_model_async(callback=None):
+    def load():
+        global model, model_loaded, model_loading
+        try:
+            model = whisper.load_model(whisper_model_path).to("cuda")
+            print("✅ 使用 GPU 推理")
+        except RuntimeError:
+            try:
+                model = whisper.load_model(whisper_model_path)
+                print("⚠️ 使用 CPU 推理")
+            except Exception as e:
+                print(f"❌ 模型加载失败: {e}")
+                model = None
+        model_loaded = model is not None
+        model_loading = False
+        if callback:
+            # ✅ 将 UI 回调安全丢回主线程
+            QTimer.singleShot(0, callback)
+            #callback()
+
+    global model_loading
+    if not model_loading:
+        model_loading = True
+        threading.Thread(target=load, daemon=True).start()
+
+
+def load_sbert_index():
+    global sbert_model, sbert_index, index_vecs, index_labels, index_texts
+    sbert_index = joblib.load(resource_path("sbert/sbert_intent/intent_sbert_index.pkl"))
+    sbert_model = SentenceTransformer(local_huggingface_path, local_files_only=True)
+    index_vecs = sbert_index["embeddings"]
+    index_labels = sbert_index["labels"]
+    index_texts = sbert_index["texts"]
 
 
 def predict_intent(text, threshold=predict_threshold):
@@ -79,13 +83,19 @@ def predict_intent(text, threshold=predict_threshold):
 
 
 def speak_async(text):
+    engine = pyttsx3.init()
+    engine.setProperty("rate", 160)
+    engine.setProperty("volume", 1.0)
     threading.Thread(target=lambda: engine.say(text) or engine.runAndWait(), daemon=True).start()
+
+
+all_templates = [phrase for phrases in control_templates.values() for phrase in phrases]
 
 
 class WhisperVoiceApp(QWidget):
     def __init__(self):
         super().__init__()
-
+        self.setWindowIcon(QIcon(resource_path("sbert/img/logo.png")))
         self.setWindowTitle("Whisper 中文语音识别 + 控制执行")
         self.resize(800, 600)
         self.center_window()
@@ -94,7 +104,7 @@ class WhisperVoiceApp(QWidget):
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_camera_frame)
 
-        self.status_label = QLabel("点击按钮开始识别", self)
+        self.status_label = QLabel("⏳ 正在加载模型，请稍候...", self)
         self.status_label.setAlignment(Qt.AlignCenter)
 
         self.video_label = QLabel(self)
@@ -105,6 +115,7 @@ class WhisperVoiceApp(QWidget):
         self.text_display.setReadOnly(True)
 
         self.button = QPushButton("🎙️ 录音识别指令", self)
+        self.button.setEnabled(False)
         self.button.clicked.connect(self.start_recognition)
 
         layout = QVBoxLayout()
@@ -114,14 +125,33 @@ class WhisperVoiceApp(QWidget):
         layout.addWidget(self.button)
         self.setLayout(layout)
 
+        QTimer.singleShot(1000, lambda: load_model_async(callback=self.enable_button_after_load))
+        #load_model_async(callback=self.enable_button_after_load)
+
     def center_window(self):
         screen = QDesktopWidget().screenGeometry()
         size = self.geometry()
         self.move((screen.width() - size.width()) // 2,
                   (screen.height() - size.height()) // 2)
 
+    def enable_button_after_load(self):
+        if model_loaded:
+            self.status_label.setText("✅ 模型加载完成，请开始识别")
+            self.button.setEnabled(True)
+        else:
+            self.status_label.setText("❌ 模型加载失败，请检查路径或配置")
+            self.button.setEnabled(False)
+
     def start_recognition(self):
-        # 设置按钮不可点击 + 改变文字
+        if not model_loaded:
+            self.status_label.setText("⏳ 模型尚未加载，请稍候...")
+            self.button.setEnabled(False)
+            load_model_async(callback=self.enable_button_after_load)
+            return
+
+        self._start_real_recognition()
+
+    def _start_real_recognition(self):
         self.button.setEnabled(False)
         self.button.setText("🎧 录音中...")
         self.text_display.clear()
@@ -143,6 +173,11 @@ class WhisperVoiceApp(QWidget):
         self.status_label.setText("🧠 正在识别中...")
         QApplication.processEvents()
 
+        if not model:
+            self.text_display.append("❌ 模型未成功加载，无法识别")
+            self.status_label.setText("❌ 模型错误")
+            return
+
         result = model.transcribe("temp.wav", language="zh")
         text = OpenCC('t2s').convert(result['text'].strip())
 
@@ -150,27 +185,24 @@ class WhisperVoiceApp(QWidget):
         corrected, score = self.get_best_pinyin_match(text, all_templates)
         self.text_display.append(f"原句: {text} => 纠正: {corrected}（相似度: {score:.2f}）")
         text = corrected
-        if len(text) < 2:
-            return
+        if len(text) > 1:
+            label, score, matched = predict_intent(text)
+            self.text_display.append(f"📦 指令识别：{label} ({score:.2f})")
 
-        label, score, matched = predict_intent(text)
-        self.text_display.append(f"📦 指令识别：{label} ({score:.2f})")
+            if label == "chat":
+                reply = "你说的是：" + text[:10]
+            else:
+                reply = f"好的，我马上{intent_to_natural_reply.get(label, label)}"
+                self.execute_action(label)
 
-        if label == "chat":
-            reply = "你说的是：" + text[:10]
-        else:
-            reply = f"好的，我马上{intent_to_natural_reply.get(label, label)}"
-            self.execute_action(label)
-
-        self.text_display.append(f"💬 回复：{reply}")
-        speak_async(reply)
+            self.text_display.append(f"💬 回复：{reply}")
+            speak_async(reply)
 
         self.status_label.setText("✅ 识别完成")
-        # 恢复按钮
         self.button.setEnabled(True)
         self.button.setText("🎙️ 录音识别指令")
 
-    def get_best_pinyin_match(self,input_text, templates, threshold = predict_threshold):
+    def get_best_pinyin_match(self, input_text, templates, threshold=predict_threshold):
         input_pinyin = lazy_pinyin(input_text)
         best_match = None
         best_score = 0.0
@@ -184,9 +216,6 @@ class WhisperVoiceApp(QWidget):
                 best_score = score
 
         return (best_match, best_score) if best_score >= threshold else (input_text, best_score)
-
-    def clean_text(self, text):
-        return re.sub(r"[^\u4e00-\u9fa5a-zA-Z0-9，。！？、“”]", "", text)
 
     def execute_action(self, label):
         if label == "take_photo":
@@ -238,6 +267,7 @@ class WhisperVoiceApp(QWidget):
 
 
 if __name__ == '__main__':
+    load_sbert_index()  # 启动时加载 SBERT 模型
     app = QApplication(sys.argv)
     win = WhisperVoiceApp()
     win.show()

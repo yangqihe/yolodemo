@@ -1,5 +1,24 @@
-local_model_path = "D:/Github/yolodemo/model/huggingface/paraphrase-multilingual-MiniLM-L12-v2"
+# local_huggingface_path = "D:/Github/yolodemo/model/huggingface/paraphrase-multilingual-MiniLM-L12-v2"
+# local_whisper_path = "D:/Github/yolodemo/model/whisper/medium.pt"
+# predict_threshold = 0.75
+
+import os
+import sys
+
+def resource_path(relative_path):
+    """兼容 PyInstaller 打包后的路径"""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+
+    # 回退一级，从 yolodemo/yolodemo 定位到 yolodemo/
+    base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    return os.path.join(base_path, relative_path)
+
+local_huggingface_path = resource_path("model/huggingface/paraphrase-multilingual-MiniLM-L12-v2")
+local_whisper_path = resource_path("model/whisper/medium.pt")
+
 predict_threshold = 0.75
+
 # ✅ 意图自然语言映射表
 intent_to_natural_reply = {
     "extend_arm": "打开机械臂",

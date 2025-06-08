@@ -3,11 +3,11 @@ import joblib
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-from sbert.sbert_const import local_model_path, control_templates
+from sbert.sbert_const import local_huggingface_path, control_templates
 
 # 加载模型
 #model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
-model = SentenceTransformer(local_model_path)
+model = SentenceTransformer(local_huggingface_path)
 
 
 
@@ -70,7 +70,7 @@ joblib.dump({
     "texts": texts,
     "labels": labels,
     "embeddings": embeddings,
-    "model_name": local_model_path
+    "model_name": local_huggingface_path
 }, "sbert_intent/intent_sbert_index.pkl")
 
 print("✅ 已构建并保存 SBERT 意图向量索引")

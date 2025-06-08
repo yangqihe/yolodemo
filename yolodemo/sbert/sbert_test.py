@@ -4,11 +4,11 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from sbert.sbert_const import local_model_path, predict_threshold
+from sbert.sbert_const import local_huggingface_path, predict_threshold
 
 # 加载向量索引
 data = joblib.load("sbert_intent/intent_sbert_index.pkl")
-model = SentenceTransformer(local_model_path)
+model = SentenceTransformer(local_huggingface_path)
 index_embeddings = data["embeddings"]
 index_labels = data["labels"]
 index_texts = data["texts"]
