@@ -75,3 +75,7 @@ from pypinyin import lazy_pinyin
 #     print(f"原句: {text} => 纠正: {corrected}（相似度: {score:.2f}）")
 
 
+import torch
+print(torch.__version__)
+print(torch.version.cuda)
+print(torch.backends.cudnn.is_available())

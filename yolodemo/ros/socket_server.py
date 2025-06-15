@@ -1,128 +1,105 @@
 import socket
 import threading
-import time
-from datetime import datetime
 import pymysql
+import json
 
-HOST = '0.0.0.0'
-PORT = 5000
-DB_CONFIG = {
-    'host': '172.17.190.165',
-    'user': 'yangqihe',
-    'password': '3621676Ab!',
-    'database': 'test',
-    'port': 3306,
-    'autocommit': True
+db_config = {
+    "host": "172.17.190.165",
+    "user": "yangqihe",
+    "password": "3621676Ab!",
+    "database": "myDB",
+    "port": 3306
 }
 
-sleep_time = 5
+def fetch_station_data():
+    conn = pymysql.connect(**db_config)
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+    cursor.execute("SELECT * FROM my_station ORDER BY station_order")
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return results
 
-active_connections = []
-db_conn = None
-db_cursor = None
+def send_json(conn, obj):
+    message = json.dumps(obj, ensure_ascii=False) + "\n"
+    conn.sendall(message.encode('utf-8'))
 
-def init_db_connection():
-    global db_conn, db_cursor
-    try:
-        db_conn = pymysql.connect(**DB_CONFIG)
-        db_cursor = db_conn.cursor()
-        print(f"[{now()}] ✅ 数据库连接成功")
-    except Exception as e:
-        print(f"[{now()}] ❗ 数据库连接失败: {e}")
-
-def get_record_count():
-    global db_conn, db_cursor
-    try:
-        db_cursor.execute("SELECT COUNT(*) FROM employees")
-        return db_cursor.fetchone()[0]
-    except (pymysql.err.OperationalError, pymysql.err.InterfaceError):
-        print(f"[{now()}] ⚠️ 连接失效，重连数据库...")
-        init_db_connection()
-        return 0
-    except Exception as e:
-        print(f"[{now()}] ❗ 查询失败: {e}")
-        return 0
+import time
 
 def handle_client(conn, addr):
-    print(f"[{now()}] 🔌 客户端连接: {addr}")
-    conn.settimeout(10)
-    active_connections.append(conn)
-
+    print(f"✅ 客户端连接: {addr}")
     try:
+        # 发送站点列表
+        station_data = fetch_station_data()
+        send_json(conn, {
+            "type": "station_list",
+            "data": station_data,
+            "msg": "初始化站点数据",
+            "success": True
+        })
+
         while True:
             data = conn.recv(1024)
             if not data:
                 break
+            msg = data.decode().strip()
+            print(f"📥 收到指令: {msg}")
 
-            msg = data.decode('utf-8').strip()
-            if msg.upper() != 'PING':
-                print(f"[{now()}] 📨 来自 {addr}: {msg}")
+            if msg.startswith("cmd:"):
+                index = msg.split(":")[1]
 
-            if msg.upper() == 'PING':
-                conn.sendall(now().encode('utf-8'))
+                # 立即回一个 ack
+                send_json(conn, {
+                    "type": "cmd_ack",
+                    "data": {"station": index},
+                    "msg": f"收到跳转指令：{index}",
+                    "success": True
+                })
 
-            elif msg.startswith('CMD:'):
-                command = msg[4:]
-                if command == 'READ_SENSOR':
-                    conn.sendall(f"[{now()}] RESP:SENSOR=25.5\n".encode('utf-8'))
-                else:
-                    conn.sendall(f"[{now()}] RESP:UNKNOWN_COMMAND {command}\n".encode('utf-8'))
+                # 5 秒后模拟到达
+                def simulate_arrival():
+                    time.sleep(5)
+                    try:
+                        send_json(conn, {
+                            "type": "arrived",
+                            "data": {"station": index},
+                            "msg": f"已到达 {index} 号站",
+                            "success": True
+                        })
+                        print(f"✅ 已模拟到达 {index} 号站")
+                    except Exception as e:
+                        print(f"❌ 发送到达消息失败: {e}")
 
-            elif msg.lower() == 'quit':
-                conn.sendall(b"RESP:BYE\n")
-                break
+                threading.Thread(target=simulate_arrival, daemon=True).start()
 
             else:
-                conn.sendall(b"RESP:INVALID_FORMAT\n")
-
-    except socket.timeout:
-        print(f"[{now()}] ⚠️ 客户端空闲超时断开: {addr}")
+                send_json(conn, {
+                    "type": "error",
+                    "msg": f"未知指令: {msg}",
+                    "data": {},
+                    "success": False
+                })
     except Exception as e:
-        print(f"[{now()}] ❗ 客户端异常断开: {addr} - {e}")
+        print(f"❌ 异常: {e}")
     finally:
         conn.close()
-        if conn in active_connections:
-            active_connections.remove(conn)
-        print(f"[{now()}] ❎ 客户端断开: {addr}")
+        print(f"❎ 客户端断开: {addr}")
 
-def monitor_database():
-    init_db_connection()
-    while True:
-        if not active_connections:
-            print(f"[{now()}] 💤 无客户端连接，暂停查询")
-            time.sleep(sleep_time)
-            continue
-
-        start = time.time()
-        count = get_record_count()
-        print(f"[{now()}] 📊 当前记录数: {count}")
-
-        if count > 10:
-            print(f"[{now()}] 🚨 记录超过 10，向所有客户端发送 CMD:ACTION")
-            for conn in active_connections[:]:
-                try:
-                    conn.sendall(b"CMD:ACTION\n")
-                except Exception as e:
-                    print(f"[{now()}] ❗ 发送失败，移除连接: {e}")
-                    active_connections.remove(conn)
-
-        elapsed = time.time() - start
-        time.sleep(max(0, sleep_time - elapsed))  # 控制周期
-
-def now():
-    return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
-def start_server():
+def start_server(host='0.0.0.0', port=5000):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind((HOST, PORT))
-    server.listen()
-    print(f"[{now()}] 🚀 服务器启动监听 {HOST}:{PORT}")
+    server.bind((host, port))
+    server.listen(5)
+    print(f"🚀 TCP JSON 服务器已启动: {host}:{port}")
+    try:
+        while True:
+            conn, addr = server.accept()
+            threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
+    except KeyboardInterrupt:
+        print("🛑 手动中断")
+    finally:
+        server.close()
 
-    threading.Thread(target=monitor_database, daemon=True).start()
-
-    while True:
-        conn, addr = server.accept()
-        threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     start_server()
+
+

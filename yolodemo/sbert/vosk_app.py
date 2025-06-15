@@ -18,6 +18,8 @@ from sentence_transformers import SentenceTransformer
 from vosk import Model, KaldiRecognizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from sbert.sbert_const import local_huggingface_path
+
 q = queue.Queue()
 is_listening = False
 rec = None
@@ -36,7 +38,7 @@ intent_to_natural_reply = {
     "close_camera": "关闭相机",
 }
 
-vosk_model_path = "../../model/vosk/vosk-model-cn-0.22"
+vosk_model_path = "../model/vosk/vosk-model-cn-0.22"
 #vosk_model_path = "../../model/vosk/vosk-model-small-cn-0.22"
 
 if not os.path.exists(vosk_model_path):
@@ -44,7 +46,7 @@ if not os.path.exists(vosk_model_path):
 rec = KaldiRecognizer(Model(vosk_model_path), 16000)
 
 sbert_index = joblib.load("sbert_intent/intent_sbert_index.pkl")
-sbert_model = SentenceTransformer(sbert_index["model_name"])
+sbert_model = SentenceTransformer(local_huggingface_path, local_files_only=True)
 index_vecs = sbert_index["embeddings"]
 index_labels = sbert_index["labels"]
 index_texts = sbert_index["texts"]

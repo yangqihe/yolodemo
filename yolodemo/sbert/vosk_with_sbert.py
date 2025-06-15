@@ -10,8 +10,10 @@ from sentence_transformers import SentenceTransformer
 from vosk import Model, KaldiRecognizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from sbert.sbert_const import local_huggingface_path
+
 # 加载 Vosk 中文模型
-vosk_model_path = "../../model/vosk/vosk-model-cn-0.22"
+vosk_model_path = "../model/vosk/vosk-model-cn-0.22"
 print("判断文件是否存在")
 if not os.path.exists(vosk_model_path):
     raise FileNotFoundError("缺少 Vosk 中文模型，请下载解压后放置在当前目录")
@@ -24,7 +26,8 @@ q = queue.Queue()
 print("🔄 正在加载 SBERT 模型...")
 # 加载 SBERT 向量模型和模板索引
 sbert_index = joblib.load("sbert_intent/intent_sbert_index.pkl")
-sbert_model = SentenceTransformer(sbert_index["model_name"])
+#sbert_model = SentenceTransformer(sbert_index["model_name"])
+sbert_model = SentenceTransformer(local_huggingface_path, local_files_only=True)
 print("✅ SBERT 模型加载完成")
 index_vecs = sbert_index["embeddings"]
 index_labels = sbert_index["labels"]

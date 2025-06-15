@@ -56,16 +56,21 @@ def send_modbus_read_command(port="COM3", baudrate=19200):
 
         modbus_requests = [
             # 读取32个开关状态（从0x00C8开始，对应线圈地址200）
-            "01 01 00 C8 00 20 3D EA",  # 功能码01，读取32个位，已验证CRC
+            #"01 01 00 C8 00 20 3D EA",  # 功能码01，读取32个位，已验证CRC
             # 打开第一个开关（地址201 = 0x00C9）
-            "01 05 00 C9 FF 00 5C 04",  # 功能码05，写单个线圈=ON
+            #"01 05 00 C9 FF 00 5C 04",  # 开启线圈
+            "01 05 00 C9 00 00 1D F4",  # 关闭线圈
+            #"01 05 00 CA FF 00 AC 04",  # 开启线圈
+            #"01 05 00 CA 00 00 ED F4",  # 关闭线圈
+            #"01 05 00 CB FF 00 FD C4",  # 开启线圈
+            #"01 05 00 CB 00 00 BC 34",  # 关闭线圈
         ]
 
         for req_hex in modbus_requests:
             # 如果是读取状态，解析响应
             parse = req_hex.startswith("01 01")
             send_modbus_command(ser, req_hex, parse_response=parse)
-            time.sleep(0.2)
+            #time.sleep(5)
 
     except serial.SerialException as e:
         print(f"串口错误: {e}")
