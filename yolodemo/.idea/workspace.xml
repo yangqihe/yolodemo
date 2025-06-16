@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01d766a2-fd72-4626-9954-6cdfa14086d9" name="更改" comment="..">
-      <change afterPath="$PROJECT_DIR$/ros/ros_socket_server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ros/test_crc16.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ros/test_read.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ros/test_ros_status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ros/test_udp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sbert/plc_control_window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ros/last_bucket_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/ros/last_bucket_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ros/socket_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/ros/socket_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ros/test_serial2.py" beforeDir="false" afterPath="$PROJECT_DIR$/ros/test_serial2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbert/setting_demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbert/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/sbert/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbert/voice_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/sbert/voice_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbert/vosk_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/sbert/vosk_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sbert/vosk_with_sbert.py" beforeDir="false" afterPath="$PROJECT_DIR$/sbert/vosk_with_sbert.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ros/ros_socket_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/ros/ros_socket_server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,7 +306,8 @@
       <workItem from="1749689664498" duration="10303000" />
       <workItem from="1749775947445" duration="2911000" />
       <workItem from="1749803000348" duration="5331000" />
-      <workItem from="1749962386564" duration="4095000" />
+      <workItem from="1749962386564" duration="17828000" />
+      <workItem from="1750036019003" duration="540000" />
     </task>
     <task id="LOCAL-00001" summary="..">
       <option name="closed" value="true" />
@@ -345,13 +333,13 @@
     <SUITE FILE_PATH="coverage/yolodemo$setting_page.coverage" NAME="setting_page 覆盖结果" MODIFIED="1749453644569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$stack_bar.coverage" NAME="stack_bar 覆盖结果" MODIFIED="1747377623689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/yolodemo$vosk_with_sbert.coverage" NAME="vosk_with_sbert 覆盖结果" MODIFIED="1749453367706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
-    <SUITE FILE_PATH="coverage/yolodemo$debug_page_fixed_final.coverage" NAME="debug_page_fixed_final 覆盖结果" MODIFIED="1748431105147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$voice_app3.coverage" NAME="voice_app3 覆盖结果" MODIFIED="1749295652004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
+    <SUITE FILE_PATH="coverage/yolodemo$debug_page_fixed_final.coverage" NAME="debug_page_fixed_final 覆盖结果" MODIFIED="1748431105147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$whisper_app.coverage" NAME="whisper_app 覆盖结果" MODIFIED="1749396076847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$test11.coverage" NAME="test11 覆盖结果" MODIFIED="1748508112355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/yolodemo$PLCControlWindow.coverage" NAME="PLCControlWindow 覆盖结果" MODIFIED="1749546658072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$test_udp.coverage" NAME="test_udp 覆盖结果" MODIFIED="1749626119319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
-    <SUITE FILE_PATH="coverage/yolodemo$ros_socket_server.coverage" NAME="ros_socket_server 覆盖结果" MODIFIED="1749807390220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$ros_socket_server.coverage" NAME="ros_socket_server 覆盖结果" MODIFIED="1749990032233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$test_camera.coverage" NAME="test_camera 覆盖结果" MODIFIED="1749271027510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$face_recognition_demo.coverage" NAME="face_recognition_demo 覆盖结果" MODIFIED="1747375604070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face" />
     <SUITE FILE_PATH="coverage/yolodemo$whisper_test__1_.coverage" NAME="whisper_test (1) 覆盖结果" MODIFIED="1749294187308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
