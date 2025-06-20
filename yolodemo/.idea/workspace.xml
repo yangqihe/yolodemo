@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01d766a2-fd72-4626-9954-6cdfa14086d9" name="更改" comment="..">
+      <change afterPath="$PROJECT_DIR$/ros/test_stop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ros/ros_socket_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/ros/ros_socket_server.py" afterDir="false" />
     </list>
@@ -80,6 +81,7 @@
     &quot;Python.test_read.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_ros_status.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_serial2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_stop.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_udp.executor&quot;: &quot;Run&quot;,
     &quot;Python.test_water.executor&quot;: &quot;Run&quot;,
     &quot;Python.train_intent_classifier.executor&quot;: &quot;Run&quot;,
@@ -168,29 +170,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_read" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="yolodemo" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ros" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ros/test_read.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test_ros_status" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="yolodemo" />
       <option name="ENV_FILES" value="" />
@@ -206,6 +185,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ros/test_ros_status.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_stop" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="yolodemo" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ros" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ros/test_stop.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -238,19 +240,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.test_stop" />
       <item itemvalue="Python.ros_socket_server" />
       <item itemvalue="Python.socket_server" />
       <item itemvalue="Python.test_ros_status" />
       <item itemvalue="Python.test_udp" />
-      <item itemvalue="Python.test_read" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.ros_socket_server" />
+        <item itemvalue="Python.test_stop" />
         <item itemvalue="Python.test_ros_status" />
         <item itemvalue="Python.socket_server" />
         <item itemvalue="Python.test_udp" />
-        <item itemvalue="Python.test_read" />
       </list>
     </recent_temporary>
   </component>
@@ -307,7 +309,10 @@
       <workItem from="1749775947445" duration="2911000" />
       <workItem from="1749803000348" duration="5331000" />
       <workItem from="1749962386564" duration="17828000" />
-      <workItem from="1750036019003" duration="540000" />
+      <workItem from="1750036019003" duration="4895000" />
+      <workItem from="1750051390310" duration="12076000" />
+      <workItem from="1750137670237" duration="6743000" />
+      <workItem from="1750297716346" duration="5347000" />
     </task>
     <task id="LOCAL-00001" summary="..">
       <option name="closed" value="true" />
@@ -331,15 +336,16 @@
     <SUITE FILE_PATH="coverage/yolodemo$vosk_with_intent_debug.coverage" NAME="vosk_with_intent_debug 覆盖结果" MODIFIED="1748139737564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/yolodemo$setting_page_with_sensors.coverage" NAME="setting_page_with_sensors 覆盖结果" MODIFIED="1749453638738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$setting_page.coverage" NAME="setting_page 覆盖结果" MODIFIED="1749453644569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$test_stop.coverage" NAME="test_stop 覆盖结果" MODIFIED="1750241504186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$stack_bar.coverage" NAME="stack_bar 覆盖结果" MODIFIED="1747377623689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/yolodemo$vosk_with_sbert.coverage" NAME="vosk_with_sbert 覆盖结果" MODIFIED="1749453367706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
-    <SUITE FILE_PATH="coverage/yolodemo$voice_app3.coverage" NAME="voice_app3 覆盖结果" MODIFIED="1749295652004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$debug_page_fixed_final.coverage" NAME="debug_page_fixed_final 覆盖结果" MODIFIED="1748431105147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$voice_app3.coverage" NAME="voice_app3 覆盖结果" MODIFIED="1749295652004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$whisper_app.coverage" NAME="whisper_app 覆盖结果" MODIFIED="1749396076847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$test11.coverage" NAME="test11 覆盖结果" MODIFIED="1748508112355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/yolodemo$PLCControlWindow.coverage" NAME="PLCControlWindow 覆盖结果" MODIFIED="1749546658072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$test_udp.coverage" NAME="test_udp 覆盖结果" MODIFIED="1749626119319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
-    <SUITE FILE_PATH="coverage/yolodemo$ros_socket_server.coverage" NAME="ros_socket_server 覆盖结果" MODIFIED="1749990032233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
+    <SUITE FILE_PATH="coverage/yolodemo$ros_socket_server.coverage" NAME="ros_socket_server 覆盖结果" MODIFIED="1750298576551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ros" />
     <SUITE FILE_PATH="coverage/yolodemo$test_camera.coverage" NAME="test_camera 覆盖结果" MODIFIED="1749271027510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
     <SUITE FILE_PATH="coverage/yolodemo$face_recognition_demo.coverage" NAME="face_recognition_demo 覆盖结果" MODIFIED="1747375604070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face" />
     <SUITE FILE_PATH="coverage/yolodemo$whisper_test__1_.coverage" NAME="whisper_test (1) 覆盖结果" MODIFIED="1749294187308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sbert" />
