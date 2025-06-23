@@ -81,7 +81,6 @@ def get_station_pose(index):
 
 
 # ---------- TCP 逻辑 ----------
-
 def send_json(conn, obj):
     try:
         message = json.dumps(obj, ensure_ascii=False) + "\n"
@@ -205,9 +204,9 @@ def rotate_robot(angle_deg, angular_speed=0.5):
 
 def start_tcp_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server.bind(("0.0.0.0", 5000))
+    server.bind(("0.0.0.0", 5001))
     server.listen(5)
-    print("🚀 TCP 服务器启动: 0.0.0.0:5000")
+    print("🚀 TCP 服务器启动: 0.0.0.0:5001")
     try:
         while True:
             conn, addr = server.accept()

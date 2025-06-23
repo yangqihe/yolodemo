@@ -35,7 +35,8 @@ def handle_client(conn, addr):
             "type": "station_list",
             "data": station_data,
             "msg": "初始化站点数据",
-            "success": True
+            "success": True,
+            "current_station_index":0
         })
 
         while True:
@@ -85,7 +86,7 @@ def handle_client(conn, addr):
         conn.close()
         print(f"❎ 客户端断开: {addr}")
 
-def start_server(host='0.0.0.0', port=5000):
+def start_server(host='0.0.0.0', port=5001):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((host, port))
     server.listen(5)
