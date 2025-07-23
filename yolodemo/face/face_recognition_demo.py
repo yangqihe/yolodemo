@@ -90,7 +90,7 @@ class FaceRecognitionApp:
         self.text_box.config(yscrollcommand=self.scrollbar.set)
 
         self.known_encodings, self.known_names = load_known_faces("known_faces")
-        self.video = cv2.VideoCapture(1)
+        self.video = cv2.VideoCapture(0)
         self.frame_count = 0
         self.cached_faces = []
 

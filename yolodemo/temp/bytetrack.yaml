@@ -1,0 +1,7 @@
+tracker_type: bytetrack
+track_high_thresh: 0.4   # 高置信度检测框的匹配阈值
+track_low_thresh: 0.1    # 低置信度检测框的匹配阈值
+new_track_thresh: 0.6    # 新轨迹确认阈值
+track_buffer: 30         # 轨迹保留的缓冲区长度（帧数）
+match_thresh: 0.8        # 匹配阈值（IoU）
+fuse_score: True  # 添加此行
