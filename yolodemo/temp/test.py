@@ -6,8 +6,21 @@ from ultralytics import YOLO
 
 # 配置路径
 MODEL_PATH = "best.pt"
-IMAGE_FOLDER = "data"
-OUTPUT_FOLDER = "output1"
+#IMAGE_FOLDER = "data"
+#OUTPUT_FOLDER = "output1"
+
+# IMAGE_FOLDER = "黄斑马"
+# OUTPUT_FOLDER = "黄斑马_output1"
+
+# IMAGE_FOLDER = "蓝月光"
+# OUTPUT_FOLDER = "蓝月光_output1"
+
+# IMAGE_FOLDER = "蓝斑马"
+# OUTPUT_FOLDER = "蓝斑马_output1"
+
+IMAGE_FOLDER = "黑尾大勾"
+OUTPUT_FOLDER = "黑尾大勾_output1"
+
 
 # MODEL_PATH = "model/best_250s.pt"
 # IMAGE_FOLDER = "data"

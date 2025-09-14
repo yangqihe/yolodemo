@@ -2,13 +2,16 @@ import cv2
 import os
 
 # 图像路径和框坐标路径
-IMAGE_PATH = "data/1747104899.jpg"
+#IMAGE_PATH = "data/1747104899.jpg"
 BOX_FILE = "output/boxes.txt"
+
+IMAGE_PATH = "data2/20250912182537676.jpg"
+
 
 # 根据 IMAGE_PATH 构建输出路径（加下划线）
 image_dir, image_name = os.path.split(IMAGE_PATH)
 name, ext = os.path.splitext(image_name)
-OUTPUT_PATH = os.path.join("output", f"{name}_.jpg")
+OUTPUT_PATH = os.path.join("data2", f"{name}_.jpg")
 
 # 读取图像
 img = cv2.imread(IMAGE_PATH)

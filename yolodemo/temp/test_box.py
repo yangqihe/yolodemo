@@ -11,7 +11,7 @@ MODEL_PATH = "best.pt"
 #IMAGE_PATH = "data/1747104887.jpg"
 #IMAGE_PATH = "data/1747104870.jpg"
 
-IMAGE_PATH = "data/1747104899.jpg"
+IMAGE_PATH = "data2/20250912182537676.jpg"
 
 OUTPUT_FOLDER = "output"
 

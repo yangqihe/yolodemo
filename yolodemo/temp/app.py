@@ -237,8 +237,9 @@ app = Flask(__name__)
 # ------------------------------
 # 配置参数
 # ------------------------------
-RTSP_URL = "rtsp://admin:@169.254.179.11:554/CHO1"
-MODEL_PATH = "F:/ultralytics-main/runs/train/fish5\weights/best.pt"
+#RTSP_URL = "rtsp://admin:@169.254.179.11:554/CHO1"
+RTSP_URL = "rtsp://admin:@169.254.121.10:554/CHO1"
+MODEL_PATH = "best.pt"
 
 
 # ------------------------------
